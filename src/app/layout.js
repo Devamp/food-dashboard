@@ -1,4 +1,6 @@
 import { PHASE_PRODUCTION_BUILD } from "next/dist/shared/lib/constants";
+import SideNavBar from "./components/sidebar";
+import "./globals.css";
 
 export const metadata = {
   title: "Next.js",
@@ -8,14 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <header style={{ backgroundColor: "grey", padding: "1rem" }}>
-          <p>Header</p>
-        </header>
+      <body className="flex">
+        <SideNavBar />
         {children}
-        <footer style={{ backgroundColor: "lightgreen", padding: "1rem" }}>
-          <p>Footer</p>
-        </footer>
       </body>
     </html>
   );
