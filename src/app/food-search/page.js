@@ -1,22 +1,59 @@
-const SearchBar = () => {
+"use client";
+
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import Food from "./fetch-foods";
+
+// header and search bar component
+const SearchBarHeader = ({ onSearch }) => {
+  // create a useState to saved user query string data within this current component
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // upon user input, set the query varaible with the most recent value
+  const handleSearch = (query) => {
+    setSearchQuery(query.target.value);
+  };
+
+  // upon button click, return the current user query back to the parent component via onSearch function
+  const handleSubmit = () => {
+    onSearch(searchQuery);
+  };
+
   return (
-    <div className="flex flex-col bg-orange-500 items-center p-14 mt-50 h-fit w-3/4 ml-auto mr-auto">
-      <label for="searchBar" className="block text-2xl font-bold text-black">
-        Search your favorite food!
+    <div className="text-center">
+      <p className="block text-6xl mb-4 font-bold text-green-600 ">
+        EXPLORE NEW FOODS.
+      </p>
+      <label for="searchBar" className="text-l font-semibold ">
+        Search for your favorite foods below and learn more about them and their
+        nutritional importance{" "}
       </label>
-      <div className="flex mt-5 bg-white w-96 justify-center">
+      <div className="flex mt-8 w-full h-auto justify-center">
         <input
           type="text"
           id="searchBar"
-          className="p-2 rounded-lg focus:outline bg-gray-200"
-          placeholder="Try searching for a food item..."
+          className="p-2 rounded-lg focus:outline-black bg-gray-700 w-2/4 text-l text-white"
+          placeholder="Search for a food item..."
+          onChange={handleSearch}
           required
         />
+
         <button
           type="submit"
-          className="text-white bg-slate-800 ml-3 p-2 rounded-lg hover:bg-slate-700"
+          id="submitButton"
+          className="flex items-center text-white bg-green-700 ml-3 pl-4 pr-5 text-xl rounded-lg hover:bg-green-600"
+          onClick={handleSubmit}
         >
-          {" "}
+          <div>
+            <FontAwesomeIcon
+              icon={faSearch}
+              height={20}
+              width={20}
+              color="white"
+              className="mr-1"
+            />
+          </div>
           Search
         </button>
       </div>
@@ -24,6 +61,46 @@ const SearchBar = () => {
   );
 };
 
+// // component to display additional information about the food item
+// const FoodInfoContainer = () => {
+//   return (
+//     <div className="bg-green-400 h-auto w-1/4 ml-10">
+//       <p>Food Info Container</p>
+//     </div>
+//   );
+// };
+
+// container compoenent to display the results of user search query
+const ResultContainer = ({ search_result }) => {
+  // ********* set HEIGHT TO AUTO FOR DYNAMIC
+  return (
+    <div className="h-auto w-full mt-6">
+      <Food search_query={search_result} />
+    </div>
+  );
+};
+
 export default function FoodSearch() {
-  return <SearchBar />;
+  // create useState for user search query
+  const [searchResult, setSearchResult] = useState("");
+
+  // set the search result
+  const handleSearch = (query) => {
+    setSearchResult(query);
+  };
+
+  return (
+    /**
+     * First render search bar and header and then the result container.
+     *
+     * The search bar will update the searchResult varaible with the most recent user query string, then we * * pass that string to ResultContainer via props.
+     */
+
+    // W-SCREEN CHANGES THE SIZE OF THE SIDE BAR
+    <div className="flex flex-col items-center h-fit w-screen mt-10">
+      <SearchBarHeader onSearch={handleSearch} />
+
+      {searchResult !== "" && <ResultContainer search_result={searchResult} />}
+    </div>
+  );
 }

@@ -10,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="flex">
+      <body className="flex bg-gray-100 h-dvh w-full">
         <SideNavBar />
         {children}
       </body>
