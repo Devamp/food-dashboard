@@ -67,7 +67,10 @@ const CardContainer = ({ foodItem }) => {
   }, [foodItem]);
 
   // if no results were returned, display error message
-  if (foodResults["hints"].length === 0) {
+  if (
+    Array.isArray(foodResults["hints"]) &&
+    foodResults["hints"].length === 0
+  ) {
     return (
       <div className="flex justify-center items-center">
         <NotFoundCard />
