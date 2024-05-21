@@ -1,9 +1,18 @@
 "use client";
+import { faAngleLeft, faHeartPulse } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import { useSearchParams } from "next/navigation";
+import { Chart, registerables } from "chart.js";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-let servingSizeSelected = 1;
+/**
+ * Sove "canvas already in use" issue
+ *
+ * Source: https://stackoverflow.com/questions/76532569/  im-having-problems-registering-the-category-scale-in-react-chart-js2/76536193
+ */
+Chart.register(...registerables);
 
 const truncateDecimal = (num) => {
   const res = (Math.round(num * 100) / 100).toFixed(2);
@@ -11,39 +20,56 @@ const truncateDecimal = (num) => {
 };
 
 // Header compoenent which contains the food name and image
-const Header = () => {
+const Header = ({ servingSize, setServingSize }) => {
   const searchParams = useSearchParams();
 
   const foodName = searchParams.get("foodName");
   const foodImage = searchParams.get("foodImage");
+  const foodWeight = searchParams.get("foodWeight");
 
   return (
-    <div className="bg-slate-600 w-fit rounded-lg p-5 mt-8 flex flex-col items-center ">
-      <p className="text-xl font-bold text-white font-mono text-center">
+    <div className="bg-slate-600 w-auto rounded-lg p-4 flex flex-col items-center ">
+      <p className=" bg-slate-900 p-3 w-64 text-xl font-bold rounded-md text-center font-mono text-green-400">
         {foodName}
       </p>
       <img
-        className="rounded-lg mt-5"
-        src={foodImage || "/no-image.webp"}
-        style={{ width: "300px", height: "250px" }}
+        className="rounded-lg mt-2"
+        src={foodImage || "/no-image.png"}
+        style={{ width: "200px", height: "200px", objectFit: "cover" }}
       ></img>
-      <ServingMenu />
+      <ServingMenu
+        servingSize={servingSize}
+        setServingSize={setServingSize}
+        servingWeight={foodWeight}
+      />{" "}
+      <Link
+        href={"/food-search"}
+        className="bg-green-400 px-3 py-2 rounded-lg hover:bg-green-500 mt-2 font-mono text-lg font-bold"
+      >
+        <FontAwesomeIcon
+          icon={faAngleLeft}
+          height={25}
+          width={25}
+          className="text-black"
+        />
+        Back
+      </Link>
     </div>
   );
 };
 
 // componenet to build the serving size input field
-const ServingMenu = () => {
-  const [servingSize, setServingSize] = useState(1);
-
-  const handleInput = (inputElement) => {
-    setServingSize(inputElement.target.value);
-    servingSizeSelected = servingSize;
+const ServingMenu = ({ servingSize, setServingSize, servingWeight }) => {
+  const handleInput = (event) => {
+    setServingSize(event.target.value);
   };
 
   return (
-    <div className="bg-slate-900 p-5 mt-5 rounded-md flex justify-center">
-      <div className="w-fit">
+    <div className="bg-slate-900 p-5 mt-3 rounded-md flex justify-center">
+      <div className="w-fit text-center">
+        <p className="mr-5 text-lg text-green-400 font-mono mb-2">
+          Serving Size: {servingWeight}g
+        </p>
         <label
           for="servingInput"
           className="mr-5 text-lg text-green-400 font-mono"
@@ -54,8 +80,10 @@ const ServingMenu = () => {
           id="servingInput"
           type="number"
           className="rounded-lg p-1 text-xl w-14 text-center"
-          defaultValue={1}
+          value={servingSize}
           onChange={handleInput}
+          max={15}
+          min={1}
         />
       </div>
     </div>
@@ -63,21 +91,82 @@ const ServingMenu = () => {
 };
 
 // componenet to build and return the food macro pie chart
-const MacroChart = () => {
+const MacroChart = ({ servingSize }) => {
+  const searchParams = useSearchParams();
+  let carbs, cals, fat, fiber, protein;
+
+  carbs = searchParams.get("foodCarbs");
+  cals = searchParams.get("foodCals");
+  fiber = searchParams.get("foodFiber");
+  fat = searchParams.get("foodFat");
+  protein = searchParams.get("foodProtein");
+
+  const nutrients = [
+    carbs * servingSize,
+    fiber * servingSize,
+    fat * servingSize,
+    protein * servingSize,
+  ];
+
+  const nutrientsNames = ["Carbs (g)", "Fiber (g)", "Fat (g)", "Protein (g)"];
+
+  const colorPalette = [
+    "rgba(129, 38, 255, 1)", // Dark Purple
+    "rgba(245, 17, 17, 0.8)", // Red
+    "rgba(60, 179, 113, 1)", // Green
+    "rgba(255, 205, 86, 1)", // Yellow
+    "rgba(54, 162, 235, 1)", // Blue
+  ];
+
+  // Pie chart data
+  const chartData = {
+    labels: nutrientsNames,
+    datasets: [
+      {
+        data: nutrients,
+        backgroundColor: colorPalette,
+        borderColor: colorPalette,
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Pie chart options
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+        labels: {
+          color: "rgba(1, 1, 1, 1)",
+          font: {
+            size: 15,
+          },
+        },
+      },
+    },
+  };
+
   return (
-    <div className="w-fit  mr-10">
-      <img
-        className="rounded-lg mt-5"
-        src={"/no-image.webp"}
-        style={{ width: "400px", height: "400px" }}
-      ></img>
+    <div className="ml-10">
+      <p className="mb-5 bg-slate-900 p-5 mt-3 rounded-md text-center font-mono text-2xl font-bold text-green-400">
+        <FontAwesomeIcon
+          icon={faHeartPulse}
+          height={25}
+          width={25}
+          color="gray"
+          className="text-red-500 mr-3"
+        />
+        Nutritional Breakdown
+      </p>
+      <Doughnut data={chartData} options={chartOptions} />
     </div>
   );
 };
 
 const MacroModules = ({ nutrient, value, units }) => {
   return (
-    <div className="mb-4 bg-slate-900 shadow-lg shadow-black text-white font-mono p-5 rounded-lg text-center w-34">
+    <div className="mb-1 bg-slate-900 shadow-lg shadow-black text-white font-mono p-5 rounded-lg text-center mt-5">
       <p>{nutrient}</p>
       <p className="text-green-400">{value + units}</p>
     </div>
@@ -85,7 +174,7 @@ const MacroModules = ({ nutrient, value, units }) => {
 };
 
 // componenet to display the food data- pie chart and macro modules
-const DataContainer = () => {
+const DataContainer = ({ servingSize }) => {
   const searchParams = useSearchParams();
   let carbs, cals, fat, fiber, protein;
 
@@ -130,51 +219,51 @@ const DataContainer = () => {
     };
 
     //fetchNutrients();
-  }, []);
+  }, [servingSize, searchParams]);
 
   return (
-    <div className=" rounded-lg flex mt-5 w-3/4 justify-center">
-      <MacroChart />
-
-      <div className="flex space-x-6 items-center w-fit">
-        <div className="grid grid-cols-3 gap-5 ">
-          <MacroModules
-            nutrient="Calories"
-            value={truncateDecimal(cals)}
-            units={"kcal"}
-          />
-          <MacroModules
-            nutrient="Protein"
-            value={truncateDecimal(protein)}
-            units={"g"}
-          />
-          <MacroModules
-            nutrient="Carbs"
-            value={truncateDecimal(carbs)}
-            units={"g"}
-          />
-          <MacroModules
-            nutrient="Fat"
-            value={truncateDecimal(fat)}
-            units={"g"}
-          />
-          <MacroModules
-            nutrient="Fiber"
-            value={truncateDecimal(fiber)}
-            units={"g"}
-          />
-          <MacroModules nutrient="Sugar" value={"TODO"} units={""} />
-        </div>
+    <div className="flex w-3/4 justify-center bg-orange">
+      <div className="grid grid-cols-3 gap-5 gap-y-0">
+        <MacroModules
+          nutrient="Calories"
+          value={truncateDecimal(cals * servingSize)}
+          units={"kcal"}
+        />
+        <MacroModules
+          nutrient="Protein"
+          value={truncateDecimal(protein * servingSize)}
+          units={"g"}
+        />
+        <MacroModules
+          nutrient="Carbs"
+          value={truncateDecimal(carbs * servingSize)}
+          units={"g"}
+        />
+        <MacroModules
+          nutrient="Fat"
+          value={truncateDecimal(fat * servingSize)}
+          units={"g"}
+        />
+        <MacroModules
+          nutrient="Fiber"
+          value={truncateDecimal(fiber * servingSize)}
+          units={"g"}
+        />
       </div>
     </div>
   );
 };
 
 const MoreInfo = () => {
+  const [servingSize, setServingSize] = useState(1);
+
   return (
-    <div className="flex flex-col items-center w-full h-screen bg-gray-300">
-      <Header />
-      <DataContainer />
+    <div className="flex flex-col items-center w-full h-screen bg-gray-100">
+      <div className="flex justify-center items-center mt-5 mb-3">
+        <Header servingSize={servingSize} setServingSize={setServingSize} />
+        <MacroChart servingSize={servingSize} />
+      </div>
+      <DataContainer servingSize={servingSize} />
     </div>
   );
 };

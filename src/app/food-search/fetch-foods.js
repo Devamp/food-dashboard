@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { calculateOverrideValues } from "next/dist/server/font-utils";
-import { faArrowDownUpAcrossLine } from "@fortawesome/free-solid-svg-icons";
+import { faChartSimple } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // will eventually find a way to hide this
 const API_KEY = "7b67beb66e6846f7762cef4240bd3cd3";
@@ -10,14 +10,17 @@ const APP_ID = "3fae59b8";
 // compoenent to display a card to show no matched results were found
 const NotFoundCard = () => {
   return (
-    <div className="flex justify-center items-center text-red-600 font-mono text-2xl border border-black rounded-lg font-bold text-cente p-2 mt-10">
-      <p>Sorry! Your search query did not match any results.</p>
+    <div className="flex justify-center items-center text-black font-mono text-xl border rounded-lg border-black font-bold text-cente p-3 mt-10 ">
+      <p>
+        <span className="text-red-500">Sorry!</span> Your search did not match
+        any results.
+      </p>
     </div>
   );
 };
 
 // compoenent to generate cards for each food item fetched from the api
-const Card = ({ foodName, foodImage, foodID, foodNutrients }) => {
+const Card = ({ foodName, foodImage, foodID, foodNutrients, foodWeight }) => {
   let carbs, cals, fat, fiber, protein;
   carbs = foodNutrients["CHOCDF"];
   cals = foodNutrients["ENERC_KCAL"];
@@ -25,16 +28,22 @@ const Card = ({ foodName, foodImage, foodID, foodNutrients }) => {
   fiber = foodNutrients["FIBTG"];
   protein = foodNutrients["PROCNT"];
 
+  let foodNameToUse = foodName;
+
+  if (foodName.toString().length > 20) {
+    foodNameToUse = foodName.toString().substring(0, 25) + "...";
+  }
+
   return (
     <div className="bg-slate-700 shadow-lg shadow-black rounded-lg h-auto mb-5 p-3 items-center">
       <div className="flex items-center justify-center bg-white font-bold text-xl rounded text-center h-16 p-2">
-        <p>{foodName}</p>
+        <p>{foodNameToUse}</p>
       </div>
       <div className="flex food-image mt-5 justify-center">
         <img
           className="rounded-lg"
-          src={foodImage || "/no-image.webp"}
-          style={{ width: "200px", height: "200px" }}
+          src={foodImage || "/no-image.png"}
+          style={{ width: "200px", height: "200px", objectFit: "cover" }}
         ></img>
       </div>
       <div className="view-button mt-2 p-3 text-white text-center">
@@ -43,8 +52,9 @@ const Card = ({ foodName, foodImage, foodID, foodNutrients }) => {
             pathname: "/food-search/more-info",
             query: {
               foodID: foodID,
-              foodName: foodName,
+              foodName: foodNameToUse,
               foodImage: foodImage,
+              foodWeight: foodWeight,
               foodCarbs: carbs,
               foodCals: cals,
               foodFat: fat,
@@ -53,7 +63,13 @@ const Card = ({ foodName, foodImage, foodID, foodNutrients }) => {
             },
           }}
         >
-          <button className="bg-green-600 rounded px-6 py-2 shadow-black hover:bg-green-500 text-xl">
+          <button className="bg-green-600 rounded px-6 py-2 shadow-black hover:bg-green-700 text-xl">
+            <FontAwesomeIcon
+              icon={faChartSimple}
+              height={25}
+              width={25}
+              className="text-white mr-2"
+            />
             Details
           </button>
         </Link>
@@ -109,6 +125,7 @@ const CardContainer = ({ foodItem }) => {
                 foodImage={item["food"]["image"]}
                 foodID={item["food"]["foodId"]}
                 foodNutrients={item["food"]["nutrients"]}
+                foodWeight={item["measures"][0]["weight"]}
               />
             ))}
         </div>
