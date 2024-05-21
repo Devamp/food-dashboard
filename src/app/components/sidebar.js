@@ -58,7 +58,7 @@ const SideNavBar = () => {
   ];
 
   return (
-    <div className="flex flex-col bg-slate-900 h-auto w-screen sm:w-1/3 lg:w-1/4 xl:w-1/5 items-center">
+    <div className="flex flex-col bg-slate-900 min-h-screen w-screen sm:w-1/3 lg:w-1/4 xl:w-1/5 items-center">
       <AppTitleDiv />
       <div className="w-full mt-2">
         {routeInfo.map((routeInfo, index) => (

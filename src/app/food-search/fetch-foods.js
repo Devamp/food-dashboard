@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { calculateOverrideValues } from "next/dist/server/font-utils";
+import { faArrowDownUpAcrossLine } from "@fortawesome/free-solid-svg-icons";
 
 // will eventually find a way to hide this
 const API_KEY = "7b67beb66e6846f7762cef4240bd3cd3";
@@ -15,7 +17,14 @@ const NotFoundCard = () => {
 };
 
 // compoenent to generate cards for each food item fetched from the api
-const Card = ({ foodName, foodImage }) => {
+const Card = ({ foodName, foodImage, foodID, foodNutrients }) => {
+  let carbs, cals, fat, fiber, protein;
+  carbs = foodNutrients["CHOCDF"];
+  cals = foodNutrients["ENERC_KCAL"];
+  fat = foodNutrients["FAT"];
+  fiber = foodNutrients["FIBTG"];
+  protein = foodNutrients["PROCNT"];
+
   return (
     <div className="bg-slate-700 shadow-lg shadow-black rounded-lg h-auto mb-5 p-3 items-center">
       <div className="flex items-center justify-center bg-white font-bold text-xl rounded text-center h-16 p-2">
@@ -29,7 +38,21 @@ const Card = ({ foodName, foodImage }) => {
         ></img>
       </div>
       <div className="view-button mt-2 p-3 text-white text-center">
-        <Link href={"/food-search/more-info"}>
+        <Link
+          href={{
+            pathname: "/food-search/more-info",
+            query: {
+              foodID: foodID,
+              foodName: foodName,
+              foodImage: foodImage,
+              foodCarbs: carbs,
+              foodCals: cals,
+              foodFat: fat,
+              foodFiber: fiber,
+              foodProtein: protein,
+            },
+          }}
+        >
           <button className="bg-green-600 rounded px-6 py-2 shadow-black hover:bg-green-500 text-xl">
             Details
           </button>
@@ -62,7 +85,6 @@ const CardContainer = ({ foodItem }) => {
         console.error("Error fetching food data:", error);
       }
     };
-
     fetchFoods();
   }, [foodItem]);
 
@@ -85,6 +107,8 @@ const CardContainer = ({ foodItem }) => {
               <Card
                 foodName={item["food"]["label"]}
                 foodImage={item["food"]["image"]}
+                foodID={item["food"]["foodId"]}
+                foodNutrients={item["food"]["nutrients"]}
               />
             ))}
         </div>
