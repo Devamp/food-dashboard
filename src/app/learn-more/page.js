@@ -30,7 +30,7 @@ const LearnMore = () => {
 
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-4xl font-bold text-center mb-10 text-green-600">
+      <h1 className="text-4xl font-bold text-center mb-10 text-green-500">
         Nutrition Education
       </h1>
       <div className="space-y-10">
