@@ -118,7 +118,7 @@ const MacroChart = ({ servingSize }) => {
     "rgba(54, 162, 235, 1)", // Blue
   ];
 
-  // Pie chart data
+  // doughnut chart data
   const chartData = {
     labels: nutrientsNames,
     datasets: [
@@ -131,7 +131,7 @@ const MacroChart = ({ servingSize }) => {
     ],
   };
 
-  // Pie chart options
+  // doughnut chart options
   const chartOptions = {
     responsive: true,
     plugins: {
