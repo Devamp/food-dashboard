@@ -68,7 +68,7 @@ const RecipieHeader = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-5 mx-3 w-4/5 xl:w-3/5 ">
+        <div className="grid grid-cols-1 gap-5 mx-3 w-4/5 xl:w-3/5 lg:grid-cols-2">
           <img
             src="/chicken.jpg"
             alt="This is a picture of a roasted chicken"
@@ -130,7 +130,7 @@ const GaugeChart = ({ value, nutrient, units, first }) => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-slate-800 rounded-lg px-5 mx-2">
+    <div className="flex flex-col items-center bg-slate-800 rounded-lg px-5 my-2 lg:mx-2">
       <div className="flex flex-col w-32 h-32">
         <Doughnut data={chartData} options={chartOptions} />
       </div>
@@ -148,7 +148,7 @@ const GaugeChart = ({ value, nutrient, units, first }) => {
 const FoodDisplayHeader = () => {
   return (
     <div className="flex bg-slate-900 p-5 items-start justify-start rounded-2xl shadow-lg mx-10 w-fit mb-4">
-      <div className="flex">
+      <div className="flex flex-col lg:flex-row">
         <GaugeChart value={450} nutrient={"Calories"} units={""} first={60} />
         <GaugeChart value={64} nutrient={"Protein"} units={"g"} first={100} />
         <GaugeChart value={5} nutrient={"Carbs"} units={"g"} first={20} />
