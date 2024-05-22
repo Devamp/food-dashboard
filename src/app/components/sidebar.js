@@ -15,7 +15,7 @@ const AppTitleDiv = () => {
     <div className="flex flex-col">
       <Link
         href={"/"}
-        className="mt-4 text-center text-3xl text-white font-bold hover:scale-110"
+        className="mt-4 text-center text-3xl font-bold hover:scale-110 text-green-500 font-mono"
       >
         FoodIQ
       </Link>
@@ -58,7 +58,6 @@ const SideNavBar = () => {
   ];
 
   return (
-    // <div className="flex flex-col bg-slate-900 h-screen w-screen sm:w-1/3 lg:w-1/4 xl:w-1/5 items-center">
     <div className="flex flex-col bg-slate-900 min-h-screen w-screen sm:w-1/3 lg:w-1/4 xl:w-1/5 items-center">
       <AppTitleDiv />
       <div className="w-full mt-2">
