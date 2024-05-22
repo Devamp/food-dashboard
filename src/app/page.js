@@ -148,10 +148,10 @@ const GaugeChart = ({ value, nutrient, units, first }) => {
 const FoodDisplayHeader = () => {
   return (
     <div className="flex bg-slate-900 p-5 items-start justify-start rounded-2xl shadow-lg mx-10 w-fit mb-4">
-      <div className="flex flex-col lg:flex-row">
-        <GaugeChart value={450} nutrient={"Calories"} units={""} first={60} />
-        <GaugeChart value={64} nutrient={"Protein"} units={"g"} first={100} />
-        <GaugeChart value={5} nutrient={"Carbs"} units={"g"} first={20} />
+      <div className="flex flex-col lg:flex-row items-center">
+        <GaugeChart value={450} nutrient={"Calories"} units={""} first={30} />
+        <GaugeChart value={64} nutrient={"Protein"} units={"g"} first={70} />
+        <GaugeChart value={5} nutrient={"Carbs"} units={"g"} first={10} />
         <GaugeChart value={24} nutrient={"Fat"} units={"g"} first={150} />
 
         <div className="flex flex-col items-start ml-6">
