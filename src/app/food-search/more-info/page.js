@@ -68,7 +68,7 @@ const ServingMenu = ({ servingSize, setServingSize, servingWeight }) => {
     <div className="bg-slate-900 p-5 mt-3 rounded-md flex justify-center">
       <div className="w-fit text-center">
         <p className="mr-5 text-lg text-green-400 font-mono mb-2">
-          Serving Size: {servingWeight}g
+          Serving Size: {truncateDecimal(servingWeight)}g
         </p>
         <label
           for="servingInput"
@@ -118,7 +118,7 @@ const MacroChart = ({ servingSize }) => {
     "rgba(54, 162, 235, 1)", // Blue
   ];
 
-  // Pie chart data
+  // doughnut chart data
   const chartData = {
     labels: nutrientsNames,
     datasets: [
@@ -131,7 +131,7 @@ const MacroChart = ({ servingSize }) => {
     ],
   };
 
-  // Pie chart options
+  // doughnut chart options
   const chartOptions = {
     responsive: true,
     plugins: {
