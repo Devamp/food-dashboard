@@ -33,7 +33,7 @@ const Header = ({ servingSize, setServingSize }) => {
         {foodName}
       </p>
       <img
-        className="rounded-lg mt-2"
+        className="rounded-lg mt-5 mb-2"
         src={foodImage || "/no-image.png"}
         style={{ width: "200px", height: "200px", objectFit: "cover" }}
       ></img>
@@ -44,7 +44,7 @@ const Header = ({ servingSize, setServingSize }) => {
       />{" "}
       <Link
         href={"/food-search"}
-        className="bg-green-400 px-3 py-2 rounded-lg hover:bg-green-500 mt-2 font-mono text-lg font-bold"
+        className="bg-green-400 mt-4 px-3 py-2 rounded-lg hover:bg-green-500 font-mono text-lg font-bold"
       >
         <FontAwesomeIcon
           icon={faAngleLeft}
@@ -138,7 +138,7 @@ const MacroChart = ({ servingSize }) => {
       legend: {
         position: "top",
         labels: {
-          color: "rgba(1, 1, 1, 1)",
+          color: "rgba(255, 255, 255, 1)",
           font: {
             size: 15,
           },
@@ -148,8 +148,8 @@ const MacroChart = ({ servingSize }) => {
   };
 
   return (
-    <div className="ml-10">
-      <p className="mb-5 bg-slate-900 p-5 mt-3 rounded-md text-center font-mono text-2xl font-bold text-green-400">
+    <div className="ml-10 bg-slate-600 p-4 rounded-md">
+      <p className="mb-5 bg-slate-900 p-5 rounded-md text-center font-mono text-2xl font-bold text-green-400">
         <FontAwesomeIcon
           icon={faHeartPulse}
           height={25}
@@ -166,7 +166,7 @@ const MacroChart = ({ servingSize }) => {
 
 const MacroModules = ({ nutrient, value, units }) => {
   return (
-    <div className="mb-1 bg-slate-900 shadow-lg shadow-black text-white font-mono p-5 rounded-lg text-center mt-5">
+    <div className="mb-1 bg-slate-900 shadow-lg shadow-black text-white font-mono p-5 rounded-lg text-center mt-5 mx-3 w-32">
       <p>{nutrient}</p>
       <p className="text-green-400">{value + units}</p>
     </div>
@@ -222,34 +222,32 @@ const DataContainer = ({ servingSize }) => {
   }, [servingSize, searchParams]);
 
   return (
-    <div className="flex w-3/4 justify-center bg-orange">
-      <div className="grid grid-cols-3 gap-5 gap-y-0">
-        <MacroModules
-          nutrient="Calories"
-          value={truncateDecimal(cals * servingSize)}
-          units={"kcal"}
-        />
-        <MacroModules
-          nutrient="Protein"
-          value={truncateDecimal(protein * servingSize)}
-          units={"g"}
-        />
-        <MacroModules
-          nutrient="Carbs"
-          value={truncateDecimal(carbs * servingSize)}
-          units={"g"}
-        />
-        <MacroModules
-          nutrient="Fat"
-          value={truncateDecimal(fat * servingSize)}
-          units={"g"}
-        />
-        <MacroModules
-          nutrient="Fiber"
-          value={truncateDecimal(fiber * servingSize)}
-          units={"g"}
-        />
-      </div>
+    <div className="flex w-3/4 justify-center">
+      <MacroModules
+        nutrient="Calories"
+        value={truncateDecimal(cals * servingSize)}
+        units={"kcal"}
+      />
+      <MacroModules
+        nutrient="Protein"
+        value={truncateDecimal(protein * servingSize)}
+        units={"g"}
+      />
+      <MacroModules
+        nutrient="Carbs"
+        value={truncateDecimal(carbs * servingSize)}
+        units={"g"}
+      />
+      <MacroModules
+        nutrient="Fat"
+        value={truncateDecimal(fat * servingSize)}
+        units={"g"}
+      />
+      <MacroModules
+        nutrient="Fiber"
+        value={truncateDecimal(fiber * servingSize)}
+        units={"g"}
+      />
     </div>
   );
 };
@@ -259,7 +257,7 @@ const MoreInfo = () => {
 
   return (
     <div className="flex flex-col items-center w-full h-screen bg-gray-100">
-      <div className="flex justify-center items-center mt-5 mb-3">
+      <div className="flex justify-center mt-5 mb-3">
         <Header servingSize={servingSize} setServingSize={setServingSize} />
         <MacroChart servingSize={servingSize} />
       </div>

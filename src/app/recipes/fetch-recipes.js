@@ -72,22 +72,6 @@ const RecipeCardBottomMenu = ({ cals, protein, fat, carbs, serves, url }) => {
         <button
           type="submit"
           id="submitButton"
-          className="flex items-center text-white mr-3 bg-green-700 px-2 py-1 text-lg rounded-lg hover:bg-green-600"
-        >
-          <div>
-            <FontAwesomeIcon
-              icon={faPepperHot}
-              height={20}
-              width={20}
-              color="white"
-              className="mr-1"
-            />
-          </div>
-          Ingredients
-        </button>
-        <button
-          type="submit"
-          id="submitButton"
           className="flex items-center text-white ml-3 bg-green-700 px-2 py-1 text-lg rounded-lg hover:bg-green-600"
           onClick={() => window.open(url, "_blank")}
         >
@@ -100,7 +84,7 @@ const RecipeCardBottomMenu = ({ cals, protein, fat, carbs, serves, url }) => {
               className="mr-1"
             />
           </div>
-          View
+          View Recipe
         </button>
       </div>
     </div>
