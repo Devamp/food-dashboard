@@ -23,7 +23,7 @@ const truncateDecimal = (num) => {
 
 const NutritionalModules = ({ color, name, value, units }) => {
   return (
-    <div className={`rounded-lg p-2 mx-5 w-28 ${color}`}>
+    <div className={`rounded-lg p-2 mx-3 w-32 ${color}`}>
       <p className=" font-mono">{name}</p>
       <p>
         {value}
@@ -68,11 +68,11 @@ const RecipeCardBottomMenu = ({ cals, protein, fat, carbs, serves, url }) => {
         />
       </div>
 
-      <div className="buttonsMenu w-1/3 flex justify-center items-center">
+      <div className="buttonsMenu flex items-center justify-center ml-10">
         <button
           type="submit"
           id="submitButton"
-          className="flex items-center text-white ml-3 bg-green-700 px-2 py-1 text-lg rounded-lg hover:bg-green-600"
+          className="flex items-center text-white bg-green-700 px-2 py-1 text-lg rounded-lg hover:bg-green-600"
           onClick={() => window.open(url, "_blank")}
         >
           <div>
@@ -103,7 +103,7 @@ const RecipeCard = ({
   healthLabels,
 }) => {
   return (
-    <div className="bg-slate-900 flex flex-col rounded-lg w-fit m-2 p-2">
+    <div className="bg-slate-900 flex flex-col rounded-lg w-full m-2 p-2">
       <div className="flex">
         <img
           src={img || "./no-image.png"}
@@ -114,7 +114,7 @@ const RecipeCard = ({
         <div className=" text-center p-2 flex flex-col">
           <p className="text-white font-mono font-bold text-2xl">{name}</p>
 
-          <div className="flex flex-wrap text-white m-5 items-center justify-center">
+          <div className="flex flex-wrap text-white m-5 justify-center items-center">
             {healthLabels.map((item, index) => (
               <span key={index} className="flex items-center">
                 <p>{item}</p>
@@ -141,12 +141,26 @@ const RecipeCard = ({
 const RecipeCardContainer = ({ searchQuery }) => {
   const [recipeResult, setRecipeResult] = useState([]);
 
+  let url = `https://api.edamam.com/api/recipes/v2?type=any&q=${searchQuery.query}&app_id=${APP_ID}&app_key=${API_KEY}`;
+
+  console.log(searchQuery);
+
+  if (searchQuery.diet !== "") {
+    url = url + `&diet=${searchQuery.diet}`;
+  }
+
+  if (searchQuery.cuisine !== "") {
+    url = url + `&cuisine=${searchQuery.cuisine}`;
+  }
+
+  if (searchQuery.meal !== "") {
+    url = url + `&meal=${searchQuery.meal}`;
+  }
+
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const res = await fetch(
-          `https://api.edamam.com/api/recipes/v2?type=any&q=${searchQuery.query}&app_id=${APP_ID}&app_key=${API_KEY}&diet=${searchQuery.diet}&cuisineType=${searchQuery.cuisine}&mealType=${searchQuery.meal}`
-        );
+        const res = await fetch(url);
         const data = await res.json();
         setRecipeResult(data);
       } catch (error) {
@@ -157,7 +171,7 @@ const RecipeCardContainer = ({ searchQuery }) => {
   }, [searchQuery]);
 
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-center w-full ">
       {Array.isArray(recipeResult["hits"]) &&
         recipeResult["hits"].map((item) => (
           <RecipeCard

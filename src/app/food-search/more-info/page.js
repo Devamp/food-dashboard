@@ -256,7 +256,10 @@ const MoreInfo = () => {
   const [servingSize, setServingSize] = useState(1);
 
   return (
-    <div className="flex flex-col items-center w-full h-screen bg-gray-100">
+    <div
+      className="flex flex-col items-center w-full h-screen
+    mx-5"
+    >
       <div className="flex justify-center mt-5 mb-3">
         <Header servingSize={servingSize} setServingSize={setServingSize} />
         <MacroChart servingSize={servingSize} />

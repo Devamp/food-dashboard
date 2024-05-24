@@ -29,9 +29,10 @@ const FilterBar = ({ setCuisine, setDiet, setMeal }) => {
           className="p-2 w-30 rounded-xl"
           onChange={(e) => setCuisine(e.target.value)}
         >
-          <option value="american" selected>
-            American
+          <option value="" selected>
+            Any
           </option>
+          <option value="american">American</option>
           <option value="asian">Asian</option>
           <option value="british">British</option>
           <option value="caribbean">Caribbean</option>
@@ -72,11 +73,12 @@ const FilterBar = ({ setCuisine, setDiet, setMeal }) => {
           className="px-3 py-2 rounded-xl w-30"
           onChange={(e) => setDiet(e.target.value)}
         >
+          <option value="" selected>
+            Any
+          </option>
           <option value="balanced">Balanced</option>
           <option value="high-fiber">High-fiber</option>
-          <option value="high-protein" selected>
-            High-protein
-          </option>
+          <option value="high-protein">High-protein</option>
           <option value="low-carb">Low-carb</option>
           <option value="low-fat">Low-fat</option>
         </select>
@@ -96,14 +98,15 @@ const FilterBar = ({ setCuisine, setDiet, setMeal }) => {
 
         <select
           id="meal"
-          className="px-3 py-2 rounded-xl w-30"
+          className="px-3 py-2 rounded-xl w-28"
           onChange={(e) => setMeal(e.target.value)}
         >
+          <option value="" selected>
+            Any
+          </option>
           <option value="breakfast">Breakfast</option>
           <option value="lunch">Lunch</option>
-          <option value="dinner" selected>
-            Dinner
-          </option>
+          <option value="dinner">Dinner</option>
           <option value="teatime">Teatime</option>
           <option value="snack">Snack</option>
         </select>
@@ -115,9 +118,9 @@ const FilterBar = ({ setCuisine, setDiet, setMeal }) => {
 const Header = ({ onSearchSet }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const [cuisine, setCuisine] = useState("american");
-  const [meal, setMeal] = useState("dinner");
-  const [diet, setDiet] = useState("high-protein");
+  const [cuisine, setCuisine] = useState("");
+  const [meal, setMeal] = useState("");
+  const [diet, setDiet] = useState("");
 
   const handleSearch = (query) => {
     setSearchQuery(query.target.value);
@@ -190,7 +193,7 @@ export default function Recipes() {
   };
 
   return (
-    <div className="flex flex-col items-center w-screen mt-5">
+    <div className="flex flex-col items-center w-screen m-5">
       <Header onSearchSet={handleSearch} />
       <ResultContainer searchQuery={searchResult} />
     </div>
