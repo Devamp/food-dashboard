@@ -55,7 +55,7 @@ const SideNavBar = () => {
     ["Food Search", faAppleWhole, "/food-search"],
     ["Meal Tracking", faPenToSquare, "/meal-tracking"],
     ["Recipes", faBookOpen, "/recipes"],
-    ["Nutritional Education", faLightbulb, "/learn-more"],
+    ["Learn More", faLightbulb, "/learn-more"],
     ["Attributions", faHandHoldingHeart, "/attributions"],
   ];
 

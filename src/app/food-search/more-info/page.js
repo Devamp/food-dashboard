@@ -28,7 +28,7 @@ const Header = ({ servingSize, setServingSize }) => {
   const foodWeight = searchParams.get("foodWeight");
 
   return (
-    <div className="bg-slate-600 w-auto rounded-lg p-4 flex flex-col items-center ">
+    <div className="sm:mb-5 lg:mb-0 bg-slate-600 w-auto rounded-lg p-4 flex flex-col items-center ">
       <p className=" bg-slate-900 p-3 w-64 text-xl font-bold rounded-md text-center font-mono text-green-400">
         {foodName}
       </p>
@@ -185,44 +185,8 @@ const DataContainer = ({ servingSize }) => {
   fat = searchParams.get("foodFat");
   protein = searchParams.get("foodProtein");
 
-  const [foodData, setFoodData] = useState([]);
-
-  useEffect(() => {
-    const fetchNutrients = async () => {
-      const response = await fetch(
-        "https://api.edamam.com/api/food-database/v2/nutrients?app_id=3fae59b8&app_key=7b67beb66e6846f7762cef4240bd3cd3",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ingredients: [
-              {
-                quantity: servingSizeSelected,
-                measureURI:
-                  "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
-                foodId: foodID,
-              },
-            ],
-          }),
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        setFoodData(data);
-      } else {
-        console.error("Failed to fetch nutrients:", response.statusText);
-      }
-    };
-
-    //fetchNutrients();
-  }, [servingSize, searchParams]);
-
   return (
-    <div className="flex w-3/4 justify-center">
+    <div className="flex flex-col items-center w-3/4  lg:flex-row lg:justify-center">
       <MacroModules
         nutrient="Calories"
         value={truncateDecimal(cals * servingSize)}
@@ -257,10 +221,10 @@ const MoreInfo = () => {
 
   return (
     <div
-      className="flex flex-col items-center w-full h-screen
-    mx-5"
+      className="flex flex-col items-center w-screen h-fit
+    mx-5 "
     >
-      <div className="flex justify-center mt-5 mb-3">
+      <div className=" flex flex-col items-center lg:flex-row justify-center mt-5 mb-3 ">
         <Header servingSize={servingSize} setServingSize={setServingSize} />
         <MacroChart servingSize={servingSize} />
       </div>
