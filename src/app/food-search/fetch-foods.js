@@ -79,11 +79,10 @@ const Card = ({ foodName, foodImage, foodID, foodNutrients, foodWeight }) => {
   );
 };
 
-// Compoenent to hold the countries cards
+// Compoenent to hold the food cards
 const CardContainer = ({ foodItem }) => {
   const [foodResults, setFoodResults] = useState([]);
 
-  // useEffect to fetch countries data via API
   useEffect(() => {
     const fetchFoods = async () => {
       try {

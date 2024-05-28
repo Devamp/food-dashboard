@@ -3,6 +3,7 @@ import {
   faBookOpen,
   faChartLine,
   faHandHoldingHeart,
+  faHome,
   faLightbulb,
   faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
@@ -17,7 +18,7 @@ const AppTitleDiv = () => {
         href={"/"}
         className="mt-4 text-center text-3xl font-bold hover:scale-110 text-green-500 font-mono"
       >
-        FoodIQ
+        Food<span className="text-orange-500">IQ</span>
       </Link>
       <div className="bg-white h-1 w-52 mt-4"></div>
     </div>
@@ -38,7 +39,7 @@ const PageRoute = ({ icon, route_name, route_path }) => {
         />
         <Link
           href={route_path}
-          className="ml-3 text-l text-gray-400 group-hover:text-white group-hover:font-bold"
+          className="ml-3 text-md text-gray-400 group-hover:text-white group-hover:font-semibold"
         >
           {route_name}{" "}
         </Link>
@@ -50,11 +51,12 @@ const PageRoute = ({ icon, route_name, route_path }) => {
 // primary element which is the side navigation bar
 const SideNavBar = () => {
   const routeInfo = [
-    ["Dashboard", faChartLine, "/"],
+    ["Home", faHome, "/"],
     ["Food Search", faAppleWhole, "/food-search"],
     ["Meal Tracking", faPenToSquare, "/meal-tracking"],
     ["Recipes", faBookOpen, "/recipes"],
     ["Nutritional Education", faLightbulb, "/learn-more"],
+    ["Attributions", faHandHoldingHeart, "/attributions"],
   ];
 
   return (
@@ -69,13 +71,6 @@ const SideNavBar = () => {
             route_path={routeInfo[2]}
           />
         ))}
-      </div>
-      <div className="mt-auto w-full mb-3">
-        <PageRoute
-          route_name={"Attributions"}
-          icon={faHandHoldingHeart}
-          route_path={"/attributions"}
-        />
       </div>
     </div>
   );

@@ -97,7 +97,7 @@ export default function FoodSearch() {
      */
 
     // W-SCREEN CHANGES THE SIZE OF THE SIDE BAR
-    <div className="flex flex-col items-center h-fit w-screen mt-10">
+    <div className="flex flex-col items-center h-fit w-screen m-5">
       <SearchBarHeader onSearch={handleSearch} />
 
       {searchResult !== "" && <ResultContainer search_result={searchResult} />}
