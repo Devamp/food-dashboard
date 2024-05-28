@@ -39,7 +39,7 @@ const PageRoute = ({ icon, route_name, route_path }) => {
         />
         <Link
           href={route_path}
-          className="ml-3 text-l text-gray-400 group-hover:text-white group-hover:font-bold"
+          className="ml-3 text-md text-gray-400 group-hover:text-white group-hover:font-semibold"
         >
           {route_name}{" "}
         </Link>
@@ -56,6 +56,7 @@ const SideNavBar = () => {
     ["Meal Tracking", faPenToSquare, "/meal-tracking"],
     ["Recipes", faBookOpen, "/recipes"],
     ["Nutritional Education", faLightbulb, "/learn-more"],
+    ["Attributions", faHandHoldingHeart, "/attributions"],
   ];
 
   return (
@@ -70,13 +71,6 @@ const SideNavBar = () => {
             route_path={routeInfo[2]}
           />
         ))}
-      </div>
-      <div className="mt-auto w-full mb-3">
-        <PageRoute
-          route_name={"Attributions"}
-          icon={faHandHoldingHeart}
-          route_path={"/attributions"}
-        />
       </div>
     </div>
   );

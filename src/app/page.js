@@ -175,7 +175,7 @@ const FoodDisplayHeader = () => {
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center w-screen mt-5">
+    <div className="flex flex-col items-center w-screen m-5">
       <RecipieHeader />
       <FoodDisplayHeader />
     </div>
