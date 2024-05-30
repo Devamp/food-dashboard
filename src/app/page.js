@@ -53,7 +53,10 @@ const RecipieHeader = () => {
               className="text-yellow-400 mr-1"
             />
           </div>
-          <p className="text-left font-mono text-4xl xl:text-6xl 2xl:text-8xl font-bold text-green-400">
+          <p
+            data-testid="recipe-header-text"
+            className="text-left font-mono text-4xl xl:text-6xl 2xl:text-8xl font-bold text-green-400"
+          >
             All the <span className="text-orange-500">best</span> recipes in one
             place.
           </p>
@@ -70,24 +73,28 @@ const RecipieHeader = () => {
 
         <div className="grid grid-cols-1 gap-5 mx-3 w-4/5 xl:w-3/5 lg:grid-cols-2">
           <img
+            data-testid="roasted-chicken-img"
             src="/chicken.jpg"
             alt="This is a picture of a roasted chicken"
             className="rounded-xl bg-white shadow-md"
             style={{ width: "200px", height: "200px" }}
           />
           <img
+            data-testid="sushi-img"
             src="/sushi.jpg"
             alt="This is a picture of a sushi"
             className="rounded-xl bg-white shadow-md"
             style={{ width: "200px", height: "200px" }}
           />
           <img
+            data-testid="lobster-img"
             src="/lobster.webp"
             alt="This is a picture of a lobster"
             className="rounded-xl bg-white shadow-md"
             style={{ width: "200px", height: "200px" }}
           />
           <img
+            data-testid="ramen-img"
             src="/ramen.jpg"
             alt="This is a picture of a ramen"
             className="rounded-xl bg-white shadow-md"
@@ -155,7 +162,10 @@ const FoodDisplayHeader = () => {
         <GaugeChart value={24} nutrient={"Fat"} units={"g"} first={150} />
 
         <div className="flex flex-col items-start ml-6">
-          <p className="text-left font-mono text-2xl xl:text-4xl 2xl:text-6xl font-bold text-green-400">
+          <p
+            data-testid="nutrition-header-text"
+            className="text-left font-mono text-2xl xl:text-4xl 2xl:text-6xl font-bold text-green-400"
+          >
             Gain <span className="text-orange-500">nutritional</span> insights.
           </p>
           <div className="flex items-center bg-green-400 rounded-lg hover:bg-green-500 font-mono text-lg font-bold px-3 py-2 mt-5 w-fit">

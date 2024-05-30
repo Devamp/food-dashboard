@@ -25,6 +25,7 @@ const FilterBar = ({ setCuisine, setDiet, setMeal }) => {
         </label>
 
         <select
+          data-testid="cuisine-dropdown"
           id="cuisine"
           className="p-2 w-30 rounded-xl"
           onChange={(e) => setCuisine(e.target.value)}
@@ -69,6 +70,7 @@ const FilterBar = ({ setCuisine, setDiet, setMeal }) => {
         </label>
 
         <select
+          data-testid="diet-dropdown"
           id="diet"
           className="px-3 py-2 rounded-xl w-30"
           onChange={(e) => setDiet(e.target.value)}
@@ -97,6 +99,7 @@ const FilterBar = ({ setCuisine, setDiet, setMeal }) => {
         </label>
 
         <select
+          data-testid="meal-dropdown"
           id="meal"
           className="px-3 py-2 rounded-xl w-28"
           onChange={(e) => setMeal(e.target.value)}
@@ -135,6 +138,7 @@ const Header = ({ onSearchSet }) => {
         <label
           for="searchBar"
           className=" text-green-400 font-bold font-mono text-4xl"
+          data-testid="recipe-header-lookup-text"
         >
           DELICIOUS RECIPES TAILORED JUST FOR YOU.
         </label>
