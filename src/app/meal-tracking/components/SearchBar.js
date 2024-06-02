@@ -1,58 +1,48 @@
-"use client"; // Add this line to mark the component as a Client Component
+"use client";
 
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-// header and search bar component
 const SearchBar = ({ onSearch }) => {
-  // create a useState to saved user query string data within this current component
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(""); // State to store the search query
 
-  // upon user input, set the query varaible with the most recent value
-  const handleSearch = (query) => {
-    setSearchQuery(query.target.value);
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value); // Update the search query state
   };
 
-  // upon button click, return the current user query back to the parent component via onSearch function
   const handleSubmit = () => {
-    onSearch(searchQuery);
+    onSearch(searchQuery); // Call the onSearch prop with the current search query
   };
 
   return (
-    <div className="text-center">
-      <p className="block text-4xl mb-4 font-bold text-green-600 py-5">
-        TRACK YOUR DAILY CALORIE INTAKE
-      </p>
-      <label for="searchBar" className="text-l font-semibold ">
-        Search your daily intake to keep track of your daily calorie intake{" "}
+    <div className="text-left mb-8">
+      <label className="block text-l font-semibold pl-40 pb-4">
+        Search for food items to add to your list and track your daily calorie
+        intake.
       </label>
-      <div className="flex mt-8 w-full h-auto justify-center">
+      <div className="flex justify-center items-center">
+        {" "}
         <input
           type="text"
-          id="searchBar"
-          className="p-2 rounded-lg focus:outline-black bg-gray-700 w-2/4 text-l text-white"
+          className="p-2 rounded-lg focus:outline-black bg-gray-700 text-white w-full max-w-lg"
           placeholder="Search for a food item..."
           onChange={handleSearch}
+          value={searchQuery}
           required
         />
-
         <button
           type="submit"
-          id="submitButton"
-          className="flex items-center text-white bg-green-700 ml-3 pl-4 pr-5 text-xl rounded-lg hover:bg-green-600"
+          className="flex items-center text-white bg-green-700 ml-3 p-2 rounded-lg hover:bg-green-600"
           onClick={handleSubmit}
         >
-          <div>
-            <FontAwesomeIcon
-              icon={faSearch}
-              height={20}
-              width={20}
-              color="white"
-              className="mr-1"
-            />
-          </div>
-          Search
+          <FontAwesomeIcon
+            icon={faSearch}
+            height={20}
+            width={20}
+            color="white"
+          />{" "}
+          <span className="ml-2">Search</span>
         </button>
       </div>
     </div>
