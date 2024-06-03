@@ -66,16 +66,18 @@ const LearnMore = () => {
       <div className="flex flex-wrap -mx-4">
         {[...articles, ...videos].map((item, index) => (
           <div key={index} className="w-full sm:w-1/2 md:w-1/3 px-4 mb-8">
-            {item.url ? (
-              <Video title={item.title} url={item.url} intro={item.intro} />
-            ) : (
-              <Article
-                title={item.title}
-                content={item.content}
-                link={item.link}
-                image={item.image}
-              />
-            )}
+            <div className="h-full flex flex-col justify-between bg-white p-4 rounded shadow">
+              {item.url ? (
+                <Video title={item.title} url={item.url} intro={item.intro} />
+              ) : (
+                <Article
+                  title={item.title}
+                  content={item.content}
+                  link={item.link}
+                  image={item.image}
+                />
+              )}
+            </div>
           </div>
         ))}
       </div>
