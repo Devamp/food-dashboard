@@ -16,8 +16,9 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="text-left mb-8">
-      <label className="block text-l font-semibold pl-40 pb-4">
+    <div className="text-left mb-8 ">
+      {/* <div className="flex flex-col bg-slate-900 rounded-2xl mb-8 p-8"> */}
+      <label className=" block text-center marker:text-l font-semibold py-4 text-orange-500">
         Search for food items to add to your list and track your daily calorie
         intake.
       </label>
@@ -26,7 +27,7 @@ const SearchBar = ({ onSearch }) => {
         <input
           type="text"
           className="p-2 rounded-lg focus:outline-black bg-gray-700 text-white w-full max-w-lg"
-          placeholder="Search for a food item..."
+          placeholder="Search for your intake food..."
           onChange={handleSearch}
           value={searchQuery}
           required

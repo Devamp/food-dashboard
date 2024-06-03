@@ -147,19 +147,21 @@ const MealTracking = () => {
 
   return (
     <div className="flex flex-col items-center w-full min-h-screen bg-gray-100">
-      <div className="text-center">
-        <h1 className="block text-3xl mb-4 font-bold text-green-600 pt-4 pl-28">
+      <div className="text-center w-full max-w-4xl">
+        <h1 className="text-3xl mb-4 font-bold text-green-600 pt-4">
           TRACK YOUR DAILY CALORIES INTAKE TO MAINTAIN A HEALTHY LIFESTYLE.
         </h1>
-        <SearchBar onSearch={handleSearch} />
+        <div className="mb-8 bg-slate-800 shadow-lg rounded-2xl p-4">
+          <SearchBar onSearch={handleSearch} />
+        </div>
       </div>
 
-      <div className="flex flex-wrap justify-start w-full max-w-6xl p-4">
+      <div className="flex flex-wrap justify-center w-full max-w-6xl p-4">
         <div className="w-full md:w-1/2 p-2">
-          <h2 className="pl-24 text-2xl font-bold mb-4 text-green-600">
+          <h2 className="text-2xl font-bold mb-4 text-green-600 text-center">
             Searched Results
           </h2>
-          <div className="pr-40 grid grid-cols-1 gap-4 mb-8">
+          <div className="grid grid-cols-1 gap-4 mb-8">
             {searchResult && (
               <FoodItem
                 foodName={searchResult.food.label}
@@ -171,14 +173,14 @@ const MealTracking = () => {
         </div>
 
         <div className="w-full md:w-1/2 p-2">
-          <h2 className="text-2xl font-bold mb-1 text-green-600">
+          <h2 className="text-2xl font-bold mb-1 text-green-600 text-center">
             Added Items
           </h2>
-          <div className=" grid grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-4 gap-4 mb-8">
             {foodItems.map((item, index) => (
               <div
                 key={index}
-                className="bg-gray-700 text-white p-3 rounded-lg flex justify-between items-center"
+                className="bg-gray-700 text-white p-3 rounded-2xl flex justify-between items-center"
               >
                 <span>
                   {item.food.label} {item.count > 1 && `(${item.count})`}
@@ -195,11 +197,11 @@ const MealTracking = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-4xl pr-20">
-        <h2 className=" text-2xl font-bold mb-4 text-green-600">
+      <div className="w-full max-w-4xl">
+        <h2 className="text-2xl font-bold mb-4 text-green-600 text-center">
           Nutrient Progress
         </h2>
-        <div className="mb-8 bg-slate-800 shadow-lg rounded-lg">
+        <div className="mb-8 bg-slate-800 shadow-lg rounded-2xl p-4">
           <ProgressBar
             label="Calories"
             value={nutrients.calories}

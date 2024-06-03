@@ -13,7 +13,7 @@ const ProgressBar = ({ label, value, max, color }) => {
       <div className="flex justify-between mb-1">
         <span className="text-lg font-medium text-green-600">{label}</span>{" "}
         <span className="text-sm font-medium text-green-600">
-          <span className="text-red-500">{roundedValue} consumed</span>,{" "}
+          <span className="text-orange-500">{roundedValue} consumed</span>,{" "}
           {remaining} remaining
         </span>{" "}
       </div>
