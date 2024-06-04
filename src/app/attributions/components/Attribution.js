@@ -42,7 +42,7 @@ const Attribution = () => {
   ];
 
   return (
-    <div className="container mx-auto px-40 py-8 min-h-screen">
+    <div className="container mx-auto px-40 py-4 min-h-screen">
       <h1 className="text-5xl text-center font-bold mb-10 text-green-600">
         Attributions
       </h1>

@@ -54,16 +54,16 @@ const LearnMore = () => {
 
   return (
     <div className="flex flex-col items-center w-screen h-fit m-5">
-      <div className="container mx-auto py-10 px-10 ">
-        <div className="text-center">
-          <h1 className="text-5xl font-bold text-center mb-1 text-green-600">
-            Nutrition Education
-          </h1>
-        </div>
-        <p className="block text-l font-semibold pl-20 pb-4 pt-1">
-          Educate yourself with these free articles and videos on topics related
-          to nutrition, healthy eating habits and cooking techniques
-        </p>
+      <div className="text-center">
+        <h1 className="text-5xl font-bold text-center mb-1 text-green-600">
+          Nutrition Education
+        </h1>
+      </div>
+      <p className="block text-lg font-semibold pl-20 pb-4 pt-1 mb-5">
+        Educate yourself with these free articles and videos on topics related
+        to nutrition, healthy eating habits and cooking techniques
+      </p>
+      <div className="container">
         <div className="flex flex-wrap -mx-4">
           {[...articles, ...videos].map((item, index) => (
             <div key={index} className="w-full sm:w-1/2 md:w-1/3 px-4 mb-8">

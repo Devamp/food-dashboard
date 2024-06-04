@@ -21,11 +21,11 @@ const SearchBarHeader = ({ onSearch }) => {
   };
 
   return (
-    <div className="text-center">
-      <p className="block text-6xl mb-4 font-bold text-green-600 ">
+    <div className="text-center bg-slate-900 shadow-lg rounded-2xl py-8 px-10">
+      <p className="block text-5xl mb-4 font-bold text-green-400 ">
         EXPLORE NEW FOODS.
       </p>
-      <label for="searchBar" className="text-l font-semibold ">
+      <label for="searchBar" className="text-lg text-white ">
         Search for your favorite foods below and learn more about them and their
         nutritional importance{" "}
       </label>
@@ -33,7 +33,7 @@ const SearchBarHeader = ({ onSearch }) => {
         <input
           type="text"
           id="searchBar"
-          className="p-2 rounded-lg focus:outline-black bg-gray-700 w-2/4 text-l text-white"
+          className="p-2 rounded-lg border-white border bg-gray-700 w-3/4 text-l text-white"
           placeholder="Search for a food item..."
           onChange={handleSearch}
           required
@@ -61,18 +61,8 @@ const SearchBarHeader = ({ onSearch }) => {
   );
 };
 
-// // component to display additional information about the food item
-// const FoodInfoContainer = () => {
-//   return (
-//     <div className="bg-green-400 h-auto w-1/4 ml-10">
-//       <p>Food Info Container</p>
-//     </div>
-//   );
-// };
-
 // container compoenent to display the results of user search query
 const ResultContainer = ({ search_result }) => {
-  // ********* set HEIGHT TO AUTO FOR DYNAMIC
   return (
     <div className="h-auto w-full mt-6">
       <Food search_query={search_result} />

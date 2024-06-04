@@ -147,15 +147,12 @@ const MealTracking = () => {
   return (
     <div className="flex flex-col items-center w-screen h-fit m-5">
       <div className="text-center w-full max-w-4xl">
-        <h1 className="text-3xl mb-4 font-bold text-green-600 pt-4">
-          TRACK YOUR DAILY CALORIES INTAKE TO MAINTAIN A HEALTHY LIFESTYLE.
-        </h1>
-        <div className="mb-8 bg-slate-800 shadow-lg rounded-2xl p-4">
+        <div className="mb-8 bg-slate-900 shadow-lg rounded-2xl p-4">
           <SearchBar onSearch={handleSearch} />
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center w-full max-w-6xl p-4">
+      <div className="flex flex-wrap justify-center w-3/4 mb-4 p-4 rounded-lg border border-black">
         <div className="w-full md:w-1/2 p-2">
           <h2 className="text-2xl font-bold mb-4 text-green-600 text-center">
             Searched Results

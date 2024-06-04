@@ -197,7 +197,7 @@ export default function Recipes() {
   };
 
   return (
-    <div className="flex flex-col items-center w-screen m-5">
+    <div className="flex flex-col items-center w-screen mx-5">
       <Header onSearchSet={handleSearch} />
       <ResultContainer searchQuery={searchResult} />
     </div>

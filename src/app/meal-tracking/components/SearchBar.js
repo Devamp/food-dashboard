@@ -17,7 +17,10 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div className="text-left mb-8 ">
-      <label className=" block text-center marker:text-l font-semibold py-4 text-white font-mono">
+      <h1 className="text-4xl text-center mb-4 font-bold text-green-400 pt-4">
+        TRACK CALORIES. LIVE A HEALTHY LIFE.
+      </h1>
+      <label className=" block text-center marker:text-l text-white text-lg mb-5">
         Search for food items to add to your list and track your daily calorie
         intake.
       </label>
@@ -42,7 +45,9 @@ const SearchBar = ({ onSearch }) => {
             width={20}
             color="white"
           />{" "}
-          <span className="ml-2">Search</span>
+          <span className="flex items-center text-white bg-green-700 px-2 text-xl rounded-lg hover:bg-green-600">
+            Search
+          </span>
         </button>
       </div>
     </div>
