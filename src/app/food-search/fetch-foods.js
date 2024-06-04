@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { faChartSimple } from "@fortawesome/free-solid-svg-icons";
