@@ -119,8 +119,9 @@ const CardContainer = ({ foodItem }) => {
       <div className="flex justify-center items-center p-5 md:p-14">
         <div className="grid justify-center items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-10 gap-y-5">
           {Array.isArray(foodResults["hints"]) &&
-            foodResults["hints"].map((item) => (
+            foodResults["hints"].map((item, i) => (
               <Card
+                key={i}
                 foodName={item["food"]["label"]}
                 foodImage={item["food"]["image"]}
                 foodID={item["food"]["foodId"]}

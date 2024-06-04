@@ -173,8 +173,9 @@ const RecipeCardContainer = ({ searchQuery }) => {
   return (
     <div className="flex flex-col justify-center items-center w-full ">
       {Array.isArray(recipeResult["hits"]) &&
-        recipeResult["hits"].map((item) => (
+        recipeResult["hits"].map((item, i) => (
           <RecipeCard
+            key={i}
             cals={item["recipe"]["calories"]}
             name={item["recipe"]["label"]}
             fat={item["recipe"]["totalNutrients"]["FAT"]["quantity"]}

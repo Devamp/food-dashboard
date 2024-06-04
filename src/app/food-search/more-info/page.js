@@ -1,6 +1,6 @@
 "use client";
 import { faAngleLeft, faHeartPulse } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { useSearchParams } from "next/navigation";
 import { Chart, registerables } from "chart.js";
@@ -224,11 +224,13 @@ const MoreInfo = () => {
       className="flex flex-col items-center w-screen h-fit
     mx-5 "
     >
-      <div className=" flex flex-col items-center lg:flex-row justify-center mt-5 mb-3 ">
-        <Header servingSize={servingSize} setServingSize={setServingSize} />
-        <MacroChart servingSize={servingSize} />
-      </div>
-      <DataContainer servingSize={servingSize} />
+      <Suspense>
+        <div className=" flex flex-col items-center lg:flex-row justify-center mt-5 mb-3 ">
+          <Header servingSize={servingSize} setServingSize={setServingSize} />
+          <MacroChart servingSize={servingSize} />
+        </div>
+        <DataContainer servingSize={servingSize} />
+      </Suspense>
     </div>
   );
 };
