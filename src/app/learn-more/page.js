@@ -53,33 +53,35 @@ const LearnMore = () => {
   ];
 
   return (
-    <div className="container mx-auto py-10 px-10">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-center mb-1 text-green-600">
-          Nutrition Education
-        </h1>
-      </div>
-      <p className="block text-l font-semibold pl-20 pb-4 pt-1">
-        Educate yourself with these free articles and videos on topics related
-        to nutrition, healthy eating habits and cooking techniques
-      </p>
-      <div className="flex flex-wrap -mx-4">
-        {[...articles, ...videos].map((item, index) => (
-          <div key={index} className="w-full sm:w-1/2 md:w-1/3 px-4 mb-8">
-            <div className="h-full flex flex-col justify-between bg-white p-4 rounded shadow">
-              {item.url ? (
-                <Video title={item.title} url={item.url} intro={item.intro} />
-              ) : (
-                <Article
-                  title={item.title}
-                  content={item.content}
-                  link={item.link}
-                  image={item.image}
-                />
-              )}
+    <div className="flex flex-col items-center w-screen h-fit m-5">
+      <div className="container mx-auto py-10 px-10 ">
+        <div className="text-center">
+          <h1 className="text-5xl font-bold text-center mb-1 text-green-600">
+            Nutrition Education
+          </h1>
+        </div>
+        <p className="block text-l font-semibold pl-20 pb-4 pt-1">
+          Educate yourself with these free articles and videos on topics related
+          to nutrition, healthy eating habits and cooking techniques
+        </p>
+        <div className="flex flex-wrap -mx-4">
+          {[...articles, ...videos].map((item, index) => (
+            <div key={index} className="w-full sm:w-1/2 md:w-1/3 px-4 mb-8">
+              <div className="h-full flex flex-col justify-between bg-white p-4 rounded shadow">
+                {item.url ? (
+                  <Video title={item.title} url={item.url} intro={item.intro} />
+                ) : (
+                  <Article
+                    title={item.title}
+                    content={item.content}
+                    link={item.link}
+                    image={item.image}
+                  />
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

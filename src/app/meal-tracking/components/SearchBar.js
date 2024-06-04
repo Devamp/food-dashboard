@@ -17,8 +17,7 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div className="text-left mb-8 ">
-      {/* <div className="flex flex-col bg-slate-900 rounded-2xl mb-8 p-8"> */}
-      <label className=" block text-center marker:text-l font-semibold py-4 text-orange-500">
+      <label className=" block text-center marker:text-l font-semibold py-4 text-white font-mono">
         Search for food items to add to your list and track your daily calorie
         intake.
       </label>

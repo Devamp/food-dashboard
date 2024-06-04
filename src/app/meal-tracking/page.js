@@ -144,9 +144,8 @@ const MealTracking = () => {
       ),
     }));
   };
-
   return (
-    <div className="flex flex-col items-center w-full min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center w-screen h-fit m-5">
       <div className="text-center w-full max-w-4xl">
         <h1 className="text-3xl mb-4 font-bold text-green-600 pt-4">
           TRACK YOUR DAILY CALORIES INTAKE TO MAINTAIN A HEALTHY LIFESTYLE.

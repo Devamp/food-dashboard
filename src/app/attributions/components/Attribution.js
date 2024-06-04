@@ -27,7 +27,7 @@ const Attribution = () => {
     },
     {
       name: "Next.js",
-      logo: "/next.svg",
+      logo: "/next.png",
       description:
         "Next.js was used for page routing and as the React framework for building the web application.",
       link: "https://nextjs.org/",
@@ -43,16 +43,16 @@ const Attribution = () => {
 
   return (
     <div className="container mx-auto px-40 py-8 min-h-screen">
-      <h1 className="text-3xl text-center font-bold mb-10 text-green-600">
+      <h1 className="text-5xl text-center font-bold mb-10 text-green-600">
         Attributions
       </h1>
       <div className="flex flex-wrap justify-center gap-8">
         {techStack.map((tech, index) => (
           <div
             key={index}
-            className="shadow-lg rounded-xl max-w-3xl w-full flex flex-col items-center p-6"
+            className="shadow-lg shadow-black bg-slate-900 rounded-xl max-w-3xl w-full flex flex-col items-center p-6"
           >
-            <div className="mb-6">
+            <div className="m-5">
               <Image
                 src={tech.logo}
                 alt={`${tech.name} Logo`}
@@ -60,7 +60,7 @@ const Attribution = () => {
                 height={50}
               />
             </div>
-            <p className="text-lg mb-4 text-gray-700 text-center">
+            <p className="text-lg mb-4 text-white text-center">
               {tech.description}
             </p>
             <div className="flex justify-center w-full">
