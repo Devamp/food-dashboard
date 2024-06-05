@@ -7,6 +7,9 @@ import SearchBar from "./components/SearchBar";
 import FoodItem from "./components/FoodItem";
 import ProgressBar from "./components/ProgressBar";
 
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY_FOOD;
+const APP_ID = process.env.NEXT_PUBLIC_APP_ID_FOOD;
+
 const truncateDecimal = (num) => {
   return (Math.round(num * 100) / 100).toFixed(2);
 };
@@ -33,7 +36,7 @@ const MealTracking = () => {
   const handleSearch = async (query) => {
     try {
       const res = await fetch(
-        `https://api.edamam.com/api/food-database/v2/parser?app_id=3fae59b8&app_key=7b67beb66e6846f7762cef4240bd3cd3&ingr=${query}`
+        `https://api.edamam.com/api/food-database/v2/parser?app_id=${APP_ID}&app_key=${API_KEY}&ingr=${query}`
       );
       const data = await res.json();
       setSearchResult(data.hints[0]); // Always select the first item from the search results
