@@ -4,6 +4,9 @@ import Link from "next/link";
 import { faChartSimple } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY_FOOD;
+const APP_ID = process.env.NEXT_PUBLIC_APP_ID_FOOD;
+
 // compoenent to display a card to show no matched results were found
 const NotFoundCard = () => {
   return (
