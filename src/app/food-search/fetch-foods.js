@@ -4,10 +4,6 @@ import Link from "next/link";
 import { faChartSimple } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// will eventually find a way to hide this
-const API_KEY = "7b67beb66e6846f7762cef4240bd3cd3";
-const APP_ID = "3fae59b8";
-
 // compoenent to display a card to show no matched results were found
 const NotFoundCard = () => {
   return (

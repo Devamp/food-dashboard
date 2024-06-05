@@ -13,9 +13,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const API_KEY = "7a796dd3d03f91fc88259a281aa572ce";
-const APP_ID = "7c3addf0";
-
 const truncateDecimal = (num) => {
   const res = (Math.round(num * 100) / 100).toFixed(0);
   return res;
